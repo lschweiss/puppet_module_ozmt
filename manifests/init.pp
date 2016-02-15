@@ -54,6 +54,11 @@ class ozmt (
   $ozmt_repo_revision = undef,
   $ozmt_install_dir = '/opt/ozmt',
   ){
+  validate_string($ozmt_repo_source)
+  validate_string($ozmt_install_dir)
+  if $ozmt_repo_revision {
+    validate_string($ozmt_repo_revision)
+  }
 
   # Check on package prerequisites
   case $::osfamily {
