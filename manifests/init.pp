@@ -50,7 +50,7 @@
 # Copyright 2016 Your name here, unless otherwise noted.
 #
 class ozmt (
-  $ozmt_repo_source = 'https://bitbucket.org/nrg/xnat_builder_1_6dev',
+  $ozmt_repo_source = 'https://bitbucket.org/ozmt/ozmt',
   $ozmt_repo_revision = undef,
   $ozmt_install_dir = '/opt/ozmt',
   ){
