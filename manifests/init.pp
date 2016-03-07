@@ -6,7 +6,7 @@
 # Parameters
 # ----------
 #
-# Document parameters here.
+# Parameters used by this module.
 #
 # * `ozmt_repo_source`
 #  The URL for the OZMT repo, default https://bitbucket.org/ozmt/ozmt
@@ -18,17 +18,23 @@
 # * `ozmt_install_dir`
 #  Where to put OZMT repo contents, default /opt/ozmt .
 #
+# * `user`
+#  OZMT user, default ozmt
+#
+# * `group`
+#  OZMT user group, default ozmt
+#
+# * `group_members`
+#  Optional, array additional usernames to add to group `group`.  Note these usernames must
+#  exist at the time of catalog compilation.  Also, this array shouldn't include the ozmt
+#  username specified in `user` above.
+#
 # Variables
 # ----------
 #
-# Here you should define a list of variables that this module would require.
+# Variables used by this module.
 #
-# * `sample variable`
-#  Explanation of how this variable affects the function of this class and if
-#  it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#  External Node Classifier as a comma separated list of hostnames." (Note,
-#  global variables should be avoided in favor of class parameters as
-#  of Puppet 2.6.)
+# NONE
 #
 # Examples
 # --------
@@ -50,9 +56,12 @@
 # Copyright 2016 Your name here, unless otherwise noted.
 #
 class ozmt (
-  $ozmt_repo_source = 'https://bitbucket.org/ozmt/ozmt',
-  $ozmt_repo_revision = undef,
-  $ozmt_install_dir = '/opt/ozmt',
+  String $ozmt_repo_source = 'https://bitbucket.org/ozmt/ozmt',
+  String $ozmt_install_dir = '/opt/ozmt',
+  String $user = 'ozmt',
+  String $group = 'ozmt',
+  Optional[Variant] $ozmt_repo_revision = undef,
+  Optional[Array] $group_members = undef,
   ){
   validate_string($ozmt_repo_source)
   validate_string($ozmt_install_dir)
@@ -74,6 +83,23 @@ class ozmt (
     default : {
       fail("Unsupported os: ${::osfamily}")
     }
+  }
+
+  # Create puppet user and group
+  $group_members_real = $group_members ? {
+    undef => [ $user ],
+    default => concat($group_members, $user),
+  }
+  user { $user:
+    home => $ozmt_install_dir,
+    gid => $group,
+    shell => '/usr/gnu/bin/false',
+    require => [ Group["${group}"], File[$ozmt_install_dir] ];
+  }
+  group { $group:
+    ensure => present,
+    members => $group_members_real,
+    auth_membership => true;
   }
 
   # Check out OZMT repo
