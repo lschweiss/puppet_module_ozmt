@@ -61,13 +61,7 @@ class ozmt (
   String $user = 'ozmt',
   String $group = 'ozmt',
   Optional[Variant] $ozmt_repo_revision = undef,
-  Optional[Array] $group_members = undef,
   ){
-  validate_string($ozmt_repo_source)
-  validate_string($ozmt_install_dir)
-  if $ozmt_repo_revision {
-    validate_string($ozmt_repo_revision)
-  }
 
   # Check on package prerequisites
   case $::osfamily {
@@ -86,10 +80,6 @@ class ozmt (
   }
 
   # Create puppet user and group
-  $group_members_real = $group_members ? {
-    undef => [ $user ],
-    default => concat($group_members, $user),
-  }
   user { $user:
     home => $ozmt_install_dir,
     gid => $group,
@@ -98,8 +88,6 @@ class ozmt (
   }
   group { $group:
     ensure => present,
-    members => $group_members_real,
-    auth_membership => true;
   }
 
   # Check out OZMT repo
