@@ -66,13 +66,16 @@ class ozmt (
   # Check on package prerequisites
   case $::osfamily {
     'Solaris' : {
-      # TODO: Verify mercurial is installed, e.g. if defined(Package['mercurial']) .
+      # TODO: Verify mercurial is installed, e.g. if defined(Package['CSWmercurial']) .
+      # TODO: Verify column is installed, e.g. if defined(Package['CSWcolumn']) .
     }
     'RedHat' : {
       # TODO: Verify mercurial is installed, e.g. if defined(Package['hg']) .
+      # TODO: Verify util-linux is installed, e.g. if defined(Package['util-linux']) .
     }
     'Debian' : {
       # TODO: Verify mercurial is installed, e.g. if defined(Package['hg']) .
+      # TODO: Verify util-linux is installed, e.g. if defined(Package['util-linux']) .
     }
     default : {
       fail("Unsupported os: ${::osfamily}")
