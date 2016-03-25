@@ -116,22 +116,34 @@ class ozmt (
   $realname = upcase($::hostname)
   
   # File resources
+  file { '/etc/ozmt':
+    ensure => directory,
+  }
+  ->
   file {
     '/etc/ozmt/config':
+      ensure => present,
       source => 'puppet:///modules/ozmt/config';
     '/etc/ozmt/config.network':
+      ensure => present,
       source => 'puppet:///modules/ozmt/config.network';
     '/etc/ozmt/config.common':
+      ensure => present,
       content => template('ozmt/config.common.erb');
     '/etc/ozmt/NIL.conf.template':
+      ensure => present,
       source => 'puppet:///modules/ozmt/NIL.conf.template';
     '/etc/ozmt/NIL-share.conf.template':
+      ensure => present,
       source => 'puppet:///modules/ozmt/NIL-share.conf.template';
     '/etc/ozmt/NRG.conf.template':
+      ensure => present,
       source => 'puppet:///modules/ozmt/NRG.conf.template';
     '/etc/ozmt/NRG-share.conf.template':
+      ensure => present,
       source => 'puppet:///modules/ozmt/NRG-share.conf.template';
     '/etc/ozmt/reporting.muttrc':
+      ensure => present,
       content => template('ozmt/reporting.muttrc.erb');
   }
 
