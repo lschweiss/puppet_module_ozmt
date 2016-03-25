@@ -1,5 +1,7 @@
 #! /bin/bash
 
+# This file managed by Puppet
+
 # Define interface stubs
 declare -A interface_definition
 interface_definition=(

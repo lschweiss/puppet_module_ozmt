@@ -1,6 +1,8 @@
 
 ; NRG smb.conf share generated from NRG.conf.template
 
+# This file managed by Puppet
+
 [#CIFS_SHARE#]
    comment = #SERVER_NAME# #ZFS_FOLDER#
    path = #MOUNTPOINT#

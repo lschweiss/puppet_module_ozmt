@@ -1,6 +1,8 @@
 
 ; NIL smb.conf share generated from NIL.conf.template
 
+# This file managed by Puppet
+
 [#CIFS_SHARE#]
    comment = #SERVER_NAME# #ZFS_FOLDER#
    path = #MOUNTPOINT#
