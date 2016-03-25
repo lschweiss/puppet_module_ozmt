@@ -1,0 +1,30 @@
+
+; NIL smb.conf share generated from NIL.conf.template
+
+[#CIFS_SHARE#]
+   comment = #SERVER_NAME# #ZFS_FOLDER#
+   path = #MOUNTPOINT#
+;   public = yes
+   writable = yes
+create mask = 0766
+directory mask = 2775
+force create mode = 0774
+force directory mode = 2775
+#force security mode = 774
+#security mask = 774
+#force directory security mode = 2775
+#directory security mask = 2775
+#   browsable = yes
+#   nt acl support = yes
+#   map acl inherit = Yes
+#   store dos attributes = Yes
+#   vfs objects = zfsacl
+#    ea support = yes
+#   nfs4:mode =  special  
+#   nfs4:acedep = merge
+#   nfs4:chown = yes
+#   acl group control = yes
+   valid users = #VALID_USERS#
+admin users = @"NEUROIMAGE\Domain Admins"
+;   admin users = root +smbusers
+
