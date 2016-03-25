@@ -265,7 +265,7 @@ class ozmt (
       hour => 0,
       require => Vcsrepo[$ozmt_install_dir];
     'ozmt-quota-reports':
-      command => "${ozmt_install_dir}/quota-reports.sh 1>/dev/null",
+      command => "${ozmt_install_dir}/reporting/quota-reports.sh 1>/dev/null",
       user => 'root',
       minute => [0, 15, 30, 45],
       require => Vcsrepo[$ozmt_install_dir];    
