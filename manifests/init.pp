@@ -259,7 +259,7 @@ class ozmt (
       minute => [5, 15, 25, 34, 45, 55],
       require => Vcsrepo[$ozmt_install_dir];
     'ozmt-send-report':
-      command => "${ozmt_install_dir}/reporting/send-report.sh 1>/dev/null",
+      command => "${ozmt_install_dir}/reporting/send_report.sh 1>/dev/null",
       user => 'root',
       minute => 0,
       hour => 0,
