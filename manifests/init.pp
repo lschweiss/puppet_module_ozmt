@@ -22,7 +22,14 @@
 #  Recipient email address for reporting, goes in config.common
 #
 # * `email_from`
-#  Sender email address for reporting, goes in reporting.muttrc
+#  Optional, sender email address for reporting, goes in reporting.muttrc.  Note this param is
+#  mutually exclusive from `email_from_suffix` below.
+#
+# * `email_from_suffix`
+#  Optional, the suffix to append to the sender email address saved in reporting.muttrc.  If this
+#  param is used, ozmt module will append the machine's hostname in all caps, to create the full
+#  sender address.  E.g. for suffix "-no-reply@domain.com" this module would use the sender address
+#  "HOSTNAME-no-reply@domain.com" .  Note this param is mutually exclusive from `email_from` above.
 #
 # * `user`
 #  OZMT user, default ozmt
@@ -49,6 +56,7 @@
 #    class { 'ozmt':
 #      ozmt_repo_source => 'https://bitbucket.org/myuser/custom-ozmt',
 #      ozmt_repo_revision => 'unstable',
+#      email_from_suffix => '-no-reply@domain.com',
 #    }
 #
 # Authors
@@ -67,7 +75,8 @@ class ozmt (
   String $user = 'ozmt',
   String $group = 'ozmt',
   String $email_to,
-  String $email_from,
+  Optional[String] $email_from = undef,
+  Optional[String] $email_from_suffix = undef,
   Optional[Variant] $ozmt_repo_revision = undef,
   ){
 
@@ -114,6 +123,15 @@ class ozmt (
   }
 
   $realname = upcase($::hostname)
+  if $email_from {
+    $email_from_real = $email_from 
+  }
+  elsif $email_from_suffix {
+    $email_from_real = "${realname}${email_from_suffix}" 
+  }
+  else {
+    $email_from_real = 'root@localhost'
+  }
   
   # File resources
   file { '/etc/ozmt':
