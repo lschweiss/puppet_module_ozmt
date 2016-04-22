@@ -134,34 +134,45 @@ class ozmt (
   }
   
   # File resources
-  file { '/etc/ozmt':
-    ensure => directory,
+  file { 
+    '/etc/ozmt':
+      ensure => directory;
+    '/etc/ozmt/samba':
+      ensure => directory;
   }
   ->
   file {
     '/etc/ozmt/config':
       ensure => present,
+      replace => false,
       source => 'puppet:///modules/ozmt/config';
     '/etc/ozmt/config.network':
       ensure => present,
+      replace => false,
       source => 'puppet:///modules/ozmt/config.network';
     '/etc/ozmt/config.common':
       ensure => present,
+      replace => false,
       content => template('ozmt/config.common.erb');
-    '/etc/ozmt/NIL.conf.template':
+    '/etc/ozmt/samba/NIL.conf.template':
       ensure => present,
+      replace => false,
       source => 'puppet:///modules/ozmt/NIL.conf.template';
-    '/etc/ozmt/NIL-share.conf.template':
+    '/etc/ozmt/samba/NIL-share.conf.template':
       ensure => present,
+      replace => false,
       source => 'puppet:///modules/ozmt/NIL-share.conf.template';
-    '/etc/ozmt/NRG.conf.template':
+    '/etc/ozmt/samba/NRG.conf.template':
       ensure => present,
+      replace => false,
       source => 'puppet:///modules/ozmt/NRG.conf.template';
-    '/etc/ozmt/NRG-share.conf.template':
+    '/etc/ozmt/samba/NRG-share.conf.template':
       ensure => present,
+      replace => false,
       source => 'puppet:///modules/ozmt/NRG-share.conf.template';
     '/etc/ozmt/reporting.muttrc':
       ensure => present,
+      replace => false,
       content => template('ozmt/reporting.muttrc.erb');
   }
 
