@@ -32,6 +32,9 @@ interface_definition=(
     ["vlan176i0"]='ipmp vlan176i0'
     ["vlan176i1"]='ipmp vlan176i1'
 
+    ["vlan203i0"]='ipmp vlan203i0'
+    ["vlan203i1"]='ipmp vlan203i1'
+
     ["vlan241i0"]='ipmp vlan241i0'
     ["vlan241i1"]='ipmp vlan241i1'
 
@@ -100,6 +103,10 @@ interface_definition=(
     ["vlan176v0"]='vlan vlan176v0'
     ["vlan176v1"]='vlan vlan176v1'
     ["vlan176v2"]='vlan vlan176v2'
+
+    ["vlan203v0"]='vlan vlan203v0'
+    ["vlan203v1"]='vlan vlan203v1'
+    ["vlan203v2"]='vlan vlan203v2'
                              
     ["vlan241v0"]='vlan vlan241v0'
     ["vlan241v1"]='vlan vlan241v1'
@@ -179,6 +186,9 @@ ipmp_definition=(
     ["vlan176i0"]='vlan176v0 vlan176v1'
     ["vlan176i1"]='vlan176v2'
 
+    ["vlan203i0"]='vlan203v0 vlan203v1'
+    ["vlan203i1"]='vlan203v2'
+
     ["vlan241i0"]='vlan241v0 vlanv241'
     ["vlan241i1"]='vlan241v2'
 
@@ -254,6 +264,10 @@ vlan_definition=(
     ["vlan176v0"]='ixgbe0 176 9000'
     ["vlan176v1"]='ixgbe1 176 9000'
     ["vlan176v2"]='igb3 176'
+
+    ["vlan203v0"]='ixgbe0 203 9000'
+    ["vlan203v1"]='ixgbe1 203 9000'
+    ["vlan203v2"]='igb3 203'
 
     ["vlan241v0"]='ixgbe0 241 9000'
     ["vlan241v1"]='ixgbe1 241 9000'
