@@ -1,7 +1,7 @@
 
 ; NIL smb.conf share generated from NIL.conf.template
 
-# This file managed by Puppet
+# This file managed by OZMT/ozmt puppet module.
 
 [#CIFS_SHARE#]
    comment = #SERVER_NAME# #ZFS_FOLDER#

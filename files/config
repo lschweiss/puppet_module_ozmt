@@ -1,5 +1,5 @@
 #! /bin/bash
 
-# This file managed by Puppet
+# This file managed by OZMT/ozmt puppet module.
 
 source /etc/ozmt/config.common

@@ -1,7 +1,7 @@
 
 ; NRG smb.conf share generated from NRG.conf.template
 
-# This file managed by Puppet
+# This file managed by OZMT/ozmt puppet module.
 
 [#CIFS_SHARE#]
    comment = #SERVER_NAME# #ZFS_FOLDER#
