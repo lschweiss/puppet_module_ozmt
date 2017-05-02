@@ -274,6 +274,9 @@ vlan_definition=(
     ["vlan120v0"]='ixgbe0 120 9000'
     ["vlan120v1"]='ixgbe1 120 9000'
     ["vlan120v2"]='igb3 120'
+    
+    ["vlan145v0"]='ixgbe0 145'
+    ["vlan145v1"]='ixgbe1 145'
 
     ["vlan160v0"]='ixgbe0 160 9000'
     ["vlan160v1"]='ixgbe1 160 9000'
