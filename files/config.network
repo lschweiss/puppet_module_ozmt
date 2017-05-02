@@ -10,6 +10,8 @@ interface_definition=(
 
     ["vlan120i0"]='ipmp vlan120i0'
     ["vlan120i1"]='ipmp vlan120i1'
+    
+    ["vlan145i0"]='ipmp vlan145i0
 
     ["vlan160i0"]='ipmp vlan160i0'
     ["vlan160i1"]='ipmp vlan160i1'
@@ -64,9 +66,17 @@ interface_definition=(
 
     ["vlan803i0"]='ipmp vlan803i0'
     ["vlan803i1"]='ipmp vlan803i1'
-
+    
     ["vlan900i0"]='ipmp vlan900i0'
     ["vlan900i1"]='ipmp vlan900i1'
+    
+    ["vlan910i0"]='ipmp vlan910i0'
+    ["vlan910i1"]='ipmp vlan910i1'
+    
+    ["vlan930i0"]='ipmp vlan930i0'
+    ["vlan930i1"]='ipmp vlan930i1'
+
+
 
     ["vlan96v0"]='vlan vlan96v0'
     ["vlan96v1"]='vlan vlan96v1'
@@ -75,6 +85,9 @@ interface_definition=(
     ["vlan120v0"]='vlan vlan120v0'
     ["vlan120v1"]='vlan vlan120v1'
     ["vlan120v2"]='vlan vlan120v2'
+    
+    ["vlan145v0"]='vlan vlan145v0'
+    ["vlan145v1"]='vlan vlan145v1'
                              
     ["vlan160v0"]='vlan vlan160v0'
     ["vlan160v1"]='vlan vlan160v1'
@@ -151,7 +164,20 @@ interface_definition=(
     ["vlan900v0"]='vlan vlan900v0'
     ["vlan900v1"]='vlan vlan900v1'
     ["vlan900v2"]='vlan vlan900v2'
+    
+    ["vlan910i0"]='ipmp vlan910i0'
+    ["vlan910i1"]='ipmp vlan910i1'
 
+    ["vlan930i0"]='ipmp vlan930i0'
+    ["vlan930i1"]='ipmp vlan930i1'
+
+    ["vlan910v0"]='vlan vlan910v0'
+    ["vlan910v1"]='vlan vlan910v1'
+    ["vlan910v2"]='vlan vlan910v2'
+
+    ["vlan930v0"]='vlan vlan930v0'
+    ["vlan930v1"]='vlan vlan930v1'
+    ["vlan930v2"]='vlan vlan930v2'
 )
 
 # Define IPMP stubs
@@ -164,6 +190,11 @@ ipmp_definition=(
 
     ["vlan120i0"]='vlan120v0 vlan120v1'
     ["vlan120i1"]='vlan120v2'
+    
+    ["vlan145i0"]='vlan145v0 vlan145v1'
+    
+    ["vlan145v0"]='vlan vlan145v0'
+    ["vlan145v1"]='vlan vlan145v1'
 
     ["vlan160i0"]='vlan160v0 vlan160v1'
     ["vlan160i1"]='vlan160v2'
@@ -222,6 +253,13 @@ ipmp_definition=(
 
     ["vlan900i0"]='vlan900v0 vlan900v1'
     ["vlan900i1"]='vlan900v2'
+    
+    ["vlan910i0"]='vlan910v0 vlan910v1'
+    ["vlan910i1"]='vlan910v2'
+    
+    ["vlan930i0"]='vlan930v0 vlan930v1'
+    ["vlan930i1"]='vlan930v2'
+
 )
 
 # Define VLAN stubs
@@ -314,6 +352,14 @@ vlan_definition=(
     ["vlan900v0"]='ixgbe0 900 9000'
     ["vlan900v1"]='ixgbe1 900 9000'
     ["vlan900v2"]='igb3 900'
+    
+    ["vlan910v0"]='ixgbe0 910 9000'
+    ["vlan910v1"]='ixgbe1 910 9000'
+    ["vlan910v2"]='igb3 910'
+
+    ["vlan930v0"]='ixgbe0 930 9000'
+    ["vlan930v1"]='ixgbe1 930 9000'
+    ["vlan930v2"]='igb3 930'
      
 )
 
