@@ -11,7 +11,7 @@ interface_definition=(
     ["vlan120i0"]='ipmp vlan120i0'
     ["vlan120i1"]='ipmp vlan120i1'
     
-    ["vlan145i0"]='ipmp vlan145i0
+    ["vlan145i0"]='ipmp vlan145i0'
 
     ["vlan160i0"]='ipmp vlan160i0'
     ["vlan160i1"]='ipmp vlan160i1'
