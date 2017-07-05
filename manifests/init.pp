@@ -85,14 +85,17 @@ class ozmt (
     'Solaris' : {
       # TODO: Verify mercurial is installed, e.g. if defined(Package['CSWmercurial']) .
       # TODO: Verify column is installed, e.g. if defined(Package['CSWcolumn']) .
+      $user_shell = '/usr/gnu/bin/false'
     }
     'RedHat' : {
       # TODO: Verify mercurial is installed, e.g. if defined(Package['hg']) .
       # TODO: Verify util-linux is installed, e.g. if defined(Package['util-linux']) .
+      $user_shell = '/bin/false'
     }
     'Debian' : {
       # TODO: Verify mercurial is installed, e.g. if defined(Package['hg']) .
       # TODO: Verify util-linux is installed, e.g. if defined(Package['util-linux']) .
+      $user_shell = '/bin/false'
     }
     default : {
       fail("Unsupported os: ${::osfamily}")
@@ -103,7 +106,7 @@ class ozmt (
   user { $user:
     home => $ozmt_install_dir,
     gid => $group,
-    shell => '/usr/gnu/bin/false',
+    shell => "$user_shell",
     require => [ Group["${group}"], File[$ozmt_install_dir] ];
   }
   group { $group:
