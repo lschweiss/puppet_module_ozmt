@@ -1,0 +1,16 @@
+
+; NRG smb.conf share generated from NRG.conf.template
+
+[#CIFS_SHARE#]
+    comment = #SERVER_NAME# #ZFS_FOLDER#
+    path = #MOUNTPOINT#
+    writable = yes
+    create mask = 0777
+    directory mask = 2777
+    force create mode = 0777
+    force directory mode = 2775
+    guest ok = #GUEST_OK#
+    valid users = #VALID_USERS#
+    admin users = #ADMIN_USERS#
+    #hosts allow = #HOSTSALLOW#
+

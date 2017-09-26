@@ -1,5 +1,5 @@
-# This file managed by OZMT/ozmt puppet module.
-
+# Created from /etc/ozmt/samba/NIL.conf.template
+#
 # This is the main Samba configuration file. You should read the
 # smb.conf(5) manual page in order to understand the options listed
 # here. Samba has a huge number of configurable options (perhaps too
@@ -88,11 +88,14 @@
 #    winbind separator = +
     winbind enum groups = yes
     winbind enum users = yes
-#    client ldap sasl wrapping = plain
+    client ldap sasl wrapping = plain
 
-    idmap backend = tdb
-    idmap uid = 100000-10000000
-    idmap gid = 100000-10000000
+
+#    idmap backend = tdb
+#    idmap uid = 100000-10000000
+#    idmap gid = 100000-10000000
+    idmap config *:backend = tdb
+    idmap config *:range = 100000-10000000
     idmap config NEUROIMAGE : backend  = nss
     idmap config NEUROIMAGE : range = 500-99999
 

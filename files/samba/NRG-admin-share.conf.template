@@ -1,0 +1,15 @@
+
+; NRG smb.conf share generated from /etc/ozmt/samba/NRG-admin-share.conf.template
+
+[admin]
+    comment = #SERVER_NAME# #ZFS_FOLDER#
+    path = #MOUNTPOINT#
+    writable = yes
+    browsable = no
+    create mask = 0775
+    directory mask = 2775
+    force create mode = 0774
+    force directory mode = 2775
+    valid users = #VALID_USERS#
+    admin users = #ADMIN_USERS#
+

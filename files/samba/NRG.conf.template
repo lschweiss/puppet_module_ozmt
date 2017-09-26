@@ -1,0 +1,327 @@
+# This is the main Samba configuration file. You should read the
+# smb.conf(5) manual page in order to understand the options listed
+# here. Samba has a huge number of configurable options (perhaps too
+# many!) most of which are not shown in this example
+#
+# For a step to step guide on installing, configuring and using samba,
+# read the Samba-HOWTO-Collection. This may be obtained from:
+#  http://www.samba.org/samba/docs/Samba-HOWTO-Collection.pdf
+#
+# Many working examples of smb.conf files can be found in the
+# Samba-Guide which is generated daily and can be downloaded from:
+#  http://www.samba.org/samba/docs/Samba-Guide.pdf
+#
+# Any line which starts with a ; (semi-colon) or a # (hash)
+# is a comment and is ignored. In this example we will use a #
+# for commentry and a ; for parts of the config file that you
+# may wish to enable
+#
+# NOTE: Whenever you modify this file you should run the command "testparm"
+# to check that you have not made any basic syntactic errors.
+#
+#---------------
+# SELINUX NOTES:
+#
+# If you want to use the useradd/groupadd family of binaries please run:
+# setsebool -P samba_domain_controller on
+#
+# If you want to share home directories via samba please run:
+# setsebool -P samba_enable_home_dirs on
+#
+# If you create a new directory you want to share you should mark it as
+# "samba_share_t" so that selinux will let you write into it.
+# Make sure not to do that on system directories as they may already have
+# been marked with othe SELinux labels.
+#
+# Use ls -ldZ /path to see which context a directory has
+#
+# Set labels only on directories you created!
+# To set a label use the following: chcon -t samba_share_t /path
+#
+# If you need to share a system created directory you can use one of the
+# following (read-only/read-write):
+# setsebool -P samba_export_all_ro on
+# or
+# setsebool -P samba_export_all_rw on
+#
+# If you want to run scripts (preexec/root prexec/print command/...) please
+# put them into the /var/lib/samba/scripts directory so that smbd will be
+# allowed to run them.
+# Make sure you COPY them and not MOVE them so that the right SELinux context
+# is applied, to check all is ok use restorecon -R -v /var/lib/samba/scripts
+#
+#--------------
+#
+#======================= Global Settings =====================================
+
+[global]
+
+# ----------------------- Network Related Options -------------------------
+#
+# workgroup = NT-Domain-Name or Workgroup-Name, eg: MIDEARTH
+#
+# server string is the equivalent of the NT Description field
+#
+# netbios name can be used to specify a server name not tied to the hostname
+#
+# Interfaces lets you configure Samba to use multiple interfaces
+# If you have multiple network interfaces then you can list the ones
+# you want to listen on (never omit localhost)
+#
+# Hosts Allow/Hosts Deny lets you restrict who can connect, and you can
+# specifiy it as a per share option as well
+#
+
+    
+    name resolve order = hosts
+    
+
+    log level = #LOG_LEVEL#
+
+    workgroup = NRG
+    #server string = ZFS Production - Samba Version %v
+
+    winbind separator = +
+    winbind enum groups = yes
+    winbind enum users = yes
+#    client ldap sasl wrapping = plain
+
+    client ldap sasl wrapping = plain
+
+    #idmap config *:backend = tdb
+    #idmap config *:range = 1000001-1999999
+    idmap config NRG:default = yes
+    idmap config NRG:backend  = ad
+    idmap config NRG:readonly = yes
+    idmap config NRG:schema_mode = rfc2307
+    idmap config NRG:range = 1000-100000
+    #idmap_ldb:use rfc2307
+
+    #kerberos method = dedicated keytab
+    #dedicated keytab file = #KEYTAB#
+    #kerberos method = secrets and keytab
+    winbind refresh tickets = yes
+
+winbind use default domain = yes
+#winbind nested groups = yes
+#winbind enum users = yes
+#winbind enum groups = yes
+winbind nss info = rfc2307
+#winbind normalize names = yes
+##winbind refresh tickets = true
+##winbind cache time = 30
+##winbind reconnect delay = 5
+
+# --------------------------- Logging Options -----------------------------
+#
+# Log File let you specify where to put logs and how to split them up.
+#
+# Max Log Size let you specify the max size log files should reach
+
+    # logs split per machine
+    #log file = /mirpool01/zfs_tools/var/log/samba/NIL01/%m.log
+    # max 50KB per log file, then rotate
+    max log size = 5000
+
+
+# ----------------------- Standalone Server Options ------------------------
+#
+# Scurity can be set to user, share(deprecated) or server(deprecated)
+#
+# Backend to store user information in. New installations should
+# use either tdbsam or ldapsam. smbpasswd is available for backwards
+# compatibility. tdbsam requires no further configuration.
+
+#   security = user
+#   passdb backend = tdbsam
+
+
+# ----------------------- Domain Members Options ------------------------
+#
+# Security must be set to domain or ads
+#
+# Use the realm option only with security = ads
+# Specifies the Active Directory realm the host is part of
+#
+# Backend to store user information in. New installations should
+# use either tdbsam or ldapsam. smbpasswd is available for backwards
+# compatibility. tdbsam requires no further configuration.
+#
+# Use password server option only with security = server or if you can't
+# use the DNS to locate Domain Controllers
+# The argument list may include:
+#   password server = My_PDC_Name [My_BDC_Name] [My_Next_BDC_Name]
+# or to auto-locate the domain controller/s
+#   password server = *
+
+#   default service = data
+    security = ads
+    realm = NRG.MIR
+    # No longer necessary for security = ads as long as DNS is 
+    # configured correctly for the domain
+    password server = 10.28.16.20 10.28.16.21
+    socket options = TCP_NODELAY
+    encrypt passwords = yes
+
+#----------------------------- Name Resolution -------------------------------
+# Windows Internet Name Serving Support Section:
+# Note: Samba can be either a WINS Server, or a WINS Client, but NOT both
+#
+# - WINS Support: Tells the NMBD component of Samba to enable it's WINS Server
+#
+# - WINS Server: Tells the NMBD components of Samba to be a WINS Client
+#
+# - WINS Proxy: Tells Samba to answer name resolution queries on
+#   behalf of a non WINS capable client, for this to work there must be
+#   at least one    WINS Server on the network. The default is NO.
+#
+# DNS Proxy - tells Samba whether or not to try to resolve NetBIOS names
+# via DNS nslookups.
+
+;   wins support = yes
+;   wins server = w.x.y.z
+;   wins proxy = yes
+
+    dns proxy = yes
+    mangled names = no
+    preserve case = yes
+    short preserve case = yes
+
+
+# --------------------------- Printing Options -----------------------------
+#
+# Load Printers let you load automatically the list of printers rather
+# than setting them up individually
+#
+# Cups Options let you pass the cups libs custom options, setting it to raw
+# for example will let you use drivers on your Windows clients
+#
+# Printcap Name let you specify an alternative printcap file
+#
+# You can choose a non default printing system using the Printing option
+
+   load printers = no
+;   cups options = raw
+
+;   printcap name = /etc/printcap
+    #obtain list of printers automatically on SystemV
+;   printcap name = lpstat
+;   printing = cups
+
+
+
+
+
+# do not attempt to self-promote to more than just a file server
+preferred master = no
+local master = no
+domain master = no
+
+# when other users browse a share they have access to
+# create file with parent folder's owner
+# this *must* be set or ACL inheritance breaks if an admin user
+# writes to a regular user's folder (verified)
+inherit owner = #INHERIT_OWNER#
+
+# if a file/folder is written that belongs to a host user (but unknown
+# to the server), then auto-map the SID to the connected user.
+# this may not be needed, but prevents problems if a local user attempts
+# to copy files from a local system that belong to a non-domain user at the same
+# time they try to preserve permissions/ACLs on the files/folders (xcopy /o).
+force unknown acl user = yes
+
+# these users get read/write to all folders without having any
+# permission set! (this is a failsafe, only put a trusted admin here).
+#admin users = lschwe01@nrg.mir
+
+# extended attributes
+# if enabled, rename/delete can break with streams_xattr also enabled
+ea support = no
+
+# using "streams_xattr" prevents XP from giving an error on Summary info
+# but streams_xattr prevents rename/delete if "ea support" is enabled.
+# Solaris + ZFS ACL (NFSv4 ACL) needs aclinherit=passthrough.
+# the *order* of these seem to be important! shadow_copy2 must be first!
+vfs objects = shadow_copy2, zfsacl, streams_xattr
+
+# NFSv4 options, per Sun/Oracle's recommendation
+nfs4:acedup = merge
+nfs4:chown = yes
+nfs4:mode = special
+
+# this must be set to No so that inheritance is correctly
+# applied by ZFS, not Samba/Windows
+inherit permissions = no
+
+# don't map "full control" to "rwx", this should be handled by ZFS
+acl map full control = no
+
+# ZFS implements "write_acl" and "write_owner" permissions that
+# are compatible with Windows (NT) ACLs better than "dos filemode = yes"
+# this will allow anyone with write access the ability to modify permissions
+dos filemode = no
+
+# store DOS attributes like "hidden" in extended attributes (xattr)
+# this prevents functions like "hide dot files" from working
+store dos attributes = yes
+
+# size (in MB) to report to the clients. setting this to a low value can help with legacy clients.
+# this does not limit what can actually be stored. this will cause problems with systems that
+# check for free space before starting a copy. Mac OS X 10.4 Tiger is where this was a problem.
+# For 4TB, use "4096000"
+# max disk size = 4096000
+
+# pattern-match files to hide (they will have the "H" attribute).
+# hide dot files here, since "hide dot files" will not work with attributes saved in xattr
+hide files = /.*/Thumbs.db/
+
+# hide special OS files or anything unreadable by the client, such as
+# "sockets, devices and fifo's in directory listings".
+# (this may not be needed)
+hide special files = yes
+hide unreadable = yes
+
+# attributes should be stored in xattr, not mapped to posix
+map archive = no
+map hidden = no
+map system = no
+map readonly = no
+
+# allow the system to delete files marked as read-only
+delete readonly = yes
+
+# ----- shadow copies and snapshots -----
+
+# set up shadow copies (zfSnap format)
+#shadow:format = %Y-%m-%d_%H.%M.%S--30d
+# weekday_2015-06-19_00:00-0500
+shadow:format = weekday_%Y-%m-%d_%H:%M-0500
+
+# windows may list snapshots out of order
+shadow:sort = desc
+
+# where to look for snapshots
+shadow:snapdir = .zfs/snapshot
+
+# timestamps are local, not UTC. this was needed for xp/2003 clients.
+shadow:localtime = yes
+
+# follow symlinks to files (snapshots need this to work)
+follow symlinks = yes
+
+# allow files to link to outside of the share (snapshots need this to work)
+wide links = yes
+
+# this needs to be disabled to allow wide links to work (and for snapshots to work)
+unix extensions = no
+
+# Restrict to specific IP address
+
+hosts allow = #HOSTSALLOW# 
+
+# Allow guest connections
+usershare allow guests = #GUEST_OK#
+guest ok = #GUEST_OK#
+guest account = nobody
+map to guest = bad user
+

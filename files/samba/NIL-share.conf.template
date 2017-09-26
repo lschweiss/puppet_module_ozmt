@@ -1,0 +1,14 @@
+
+; NIL smb.conf share generated from /etc/ozmt/samba/NIL-share.conf.template
+
+[#CIFS_SHARE#]
+    comment = #SERVER_NAME# #ZFS_FOLDER#
+    path = #MOUNTPOINT#
+    writable = yes
+    create mask = 0766
+    directory mask = 2775
+    force create mode = 0774
+    force directory mode = 2775
+    valid users = #VALID_USERS#
+    admin users = #ADMIN_USERS#
+

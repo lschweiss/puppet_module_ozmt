@@ -85,6 +85,13 @@ class ozmt (
     'Solaris' : {
       # TODO: Verify mercurial is installed, e.g. if defined(Package['CSWmercurial']) .
       # TODO: Verify column is installed, e.g. if defined(Package['CSWcolumn']) .
+      cron {
+        'clean-dead-disk-links':
+          command => "/usr/sbin/devfsadm -C -v",
+          user => 'root',
+          minute => 35,
+
+      }
     }
     'RedHat' : {
       # TODO: Verify mercurial is installed, e.g. if defined(Package['hg']) .
@@ -116,10 +123,11 @@ class ozmt (
   }
   ->
   vcsrepo { $ozmt_install_dir:
-    ensure => present,
+    ensure   => present,
     provider => hg,
     revision => $ozmt_repo_revision,
-    source => $ozmt_repo_source;
+    source   => $ozmt_repo_source,
+    notify   => Exec['setup-ozmt-links'];
   }
 
   $realname = upcase($::hostname)
@@ -154,22 +162,11 @@ class ozmt (
       ensure => present,
       replace => false,
       content => template('ozmt/config.common.erb');
-    '/etc/ozmt/samba/NIL.conf.template':
+    '/etc/ozmt/samba':
       ensure => present,
       replace => false,
-      source => 'puppet:///modules/ozmt/NIL.conf.template';
-    '/etc/ozmt/samba/NIL-share.conf.template':
-      ensure => present,
-      replace => false,
-      source => 'puppet:///modules/ozmt/NIL-share.conf.template';
-    '/etc/ozmt/samba/NRG.conf.template':
-      ensure => present,
-      replace => false,
-      source => 'puppet:///modules/ozmt/NRG.conf.template';
-    '/etc/ozmt/samba/NRG-share.conf.template':
-      ensure => present,
-      replace => false,
-      source => 'puppet:///modules/ozmt/NRG-share.conf.template';
+      recurse => true,
+      source => 'puppet:///modules/ozmt/samba';
     '/etc/ozmt/reporting.muttrc':
       ensure => present,
       replace => false,
@@ -297,7 +294,7 @@ class ozmt (
       command => "${ozmt_install_dir}/reporting/quota-reports.sh 1>/dev/null",
       user => 'root',
       minute => [0, 15, 30, 45],
-      require => Vcsrepo[$ozmt_install_dir];    
+      require => Vcsrepo[$ozmt_install_dir];
   }
   
   

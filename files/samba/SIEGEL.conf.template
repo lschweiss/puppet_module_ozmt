@@ -1,5 +1,3 @@
-# This file managed by OZMT/ozmt puppet module.
-
 # This is the main Samba configuration file. You should read the
 # smb.conf(5) manual page in order to understand the options listed
 # here. Samba has a huge number of configurable options (perhaps too
@@ -84,31 +82,31 @@
     #server string = ZFS Production - Samba Version %v
 
     #winbind separator = +
-#    winbind enum groups = yes
-#    winbind enum users = yes
+    #winbind enum groups = yes
+    #winbind enum users = yes
 #    client ldap sasl wrapping = plain
 
-    client ldap sasl wrapping = plain
+    #client ldap sasl wrapping = plain
 
-    idmap config *:backend = tdb
-    idmap config *:range = 1000001-1999999
-    idmap config NRG:default = yes
-    idmap config NRG:backend  = ad
-    idmap config NRG:readonly = yes
-    idmap config NRG:schema_mode = sfu20
-    idmap config NRG:range = 1000-100000
-##    idmap_ldb:use rfc2307
+    #idmap config *:backend = tdb
+    #idmap config *:range = 1000001-1999999
+    #idmap config NRG:default = yes
+    #idmap config NRG:backend  = ad
+    #idmap config NRG:readonly = yes
+    #idmap config NRG:schema_mode = rfc2307
+    #idmap config NRG:range = 1000-100000
+    #idmap_ldb:use rfc2307
 
     #kerberos method = dedicated keytab
-    dedicated keytab file = #KEYTAB#
-    kerberos method = secrets and keytab
-    winbind refresh tickets = yes
+    #dedicated keytab file = #KEYTAB#
+    #kerberos method = secrets and keytab
+    #winbind refresh tickets = yes
 
-winbind use default domain = yes
+#winbind use default domain = yes
 #winbind nested groups = yes
 #winbind enum users = yes
 #winbind enum groups = yes
-winbind nss info = rfc2307
+#winbind nss info = rfc2307
 ##winbind refresh tickets = true
 ##winbind cache time = 30
 ##winbind reconnect delay = 5
@@ -122,7 +120,7 @@ winbind nss info = rfc2307
     # logs split per machine
     #log file = /mirpool01/zfs_tools/var/log/samba/NIL01/%m.log
     # max 50KB per log file, then rotate
-    max log size = 5000
+    max log size = 25000
 
 
 # ----------------------- Standalone Server Options ------------------------
@@ -156,13 +154,15 @@ winbind nss info = rfc2307
 #   password server = *
 
 #   default service = data
-    security = ads
-    realm = NRG.MIR
+    #security = SHARE
+    #realm = NRG.MIR
     # No longer necessary for security = ads as long as DNS is 
     # configured correctly for the domain
-    password server = nrg-dc01.nrg.mir nrg-dc02.nrg.mir
-    socket options = TCP_NODELAY
-    encrypt passwords = yes
+    #passdb backend = guest
+    #password server = 10.28.16.20 10.28.16.21
+    #socket options = TCP_NODELAY
+    socket options = TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=65536 SO_SNDBUF=65536
+    #encrypt passwords = yes
 
 #----------------------------- Name Resolution -------------------------------
 # Windows Internet Name Serving Support Section:
@@ -222,7 +222,7 @@ domain master = no
 # create file with parent folder's owner
 # this *must* be set or ACL inheritance breaks if an admin user
 # writes to a regular user's folder (verified)
-inherit owner = yes
+inherit owner = #INHERIT_OWNER#
 
 # if a file/folder is written that belongs to a host user (but unknown
 # to the server), then auto-map the SID to the connected user.
@@ -233,7 +233,7 @@ force unknown acl user = yes
 
 # these users get read/write to all folders without having any
 # permission set! (this is a failsafe, only put a trusted admin here).
-admin users = lschwe01@nrg.mir
+#admin users = lschwe01@nrg.mir
 
 # extended attributes
 # if enabled, rename/delete can break with streams_xattr also enabled
@@ -315,4 +315,14 @@ wide links = yes
 
 # this needs to be disabled to allow wide links to work (and for snapshots to work)
 unix extensions = no
+
+# Restrict to specific IP address
+
+hosts allow = #HOSTSALLOW# 
+
+# Allow guest connections
+usershare allow guests = #GUEST_OK#
+guest ok = #GUEST_OK#
+guest account = nobody
+map to guest = bad user
 
