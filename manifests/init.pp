@@ -148,8 +148,6 @@ class ozmt (
   file { 
     '/etc/ozmt':
       ensure => directory;
-    '/etc/ozmt/samba':
-      ensure => directory;
   }
   ->
   file {
