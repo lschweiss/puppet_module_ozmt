@@ -4,72 +4,51 @@
 declare -A interface_definition
 interface_definition=(
     ["vlan96i0"]="ipmp vlan96i0"
-    ["vlan96i1"]="ipmp vlan96i1"
 
     ["vlan120i0"]="ipmp vlan120i0"
-    ["vlan120i1"]="ipmp vlan120i1"
-
-    ["vlan145i0"]="ipmp vlan145i0"
+    
+    ["vlan145i0"]='ipmp vlan145i0'
 
     ["vlan160i0"]="ipmp vlan160i0"
-    ["vlan160i1"]="ipmp vlan160i1"
 
     ["vlan161i0"]="ipmp vlan161i0"
-    ["vlan161i1"]="ipmp vlan161i1"
 
     ["vlan163i0"]="ipmp vlan163i0"
-    ["vlan163i1"]="ipmp vlan163i1"
 
     ["vlan164i0"]="ipmp vlan164i0"
-    ["vlan164i1"]="ipmp vlan164i1"
 
     ["vlan170i0"]="ipmp vlan170i0"
-    ["vlan170i1"]="ipmp vlan170i1"
 
     ["vlan175i0"]="ipmp vlan175i0"
-    ["vlan175i1"]="ipmp vlan175i1"
 
     ["vlan176i0"]="ipmp vlan176i0"
-    ["vlan176i1"]="ipmp vlan176i1"
 
     ["vlan241i0"]="ipmp vlan241i0"
-    ["vlan241i1"]="ipmp vlan241i1"
 
     ["vlan253i0"]="ipmp vlan253i0"
-    ["vlan253i1"]="ipmp vlan253i1"
 
     ["vlan326i0"]="ipmp vlan326i0"
-    ["vlan326i1"]="ipmp vlan326i1"
 
     ["vlan400i0"]="ipmp vlan400i0"
-    ["vlan400i1"]="ipmp vlan400i1"
 
     ["vlan490i0"]="ipmp vlan490i0"
-    ["vlan490i1"]="ipmp vlan490i1"
 
     ["vlan540i0"]="ipmp vlan540i0"
-    ["vlan540i1"]="ipmp vlan540i1"
 
     ["vlan800i0"]="ipmp vlan800i0"
-    ["vlan800i1"]="ipmp vlan800i1"
 
     ["vlan801i0"]="ipmp vlan801i0"
-    ["vlan801i1"]="ipmp vlan801i1"
 
     ["vlan802i0"]="ipmp vlan802i0"
-    ["vlan802i1"]="ipmp vlan802i1"
 
     ["vlan803i0"]="ipmp vlan803i0"
-    ["vlan803i1"]="ipmp vlan803i1"
 
     ["vlan900i0"]="ipmp vlan900i0"
-    ["vlan900i1"]="ipmp vlan900i1"
+    
+    ["vlan910i0"]='ipmp vlan910i0'
+    
+    ["vlan930i0"]='ipmp vlan930i0'
 
-    ["vlan910i0"]="ipmp vlan910i0"
-    ["vlan910i1"]="ipmp vlan910i1"
-
-    ["vlan930i0"]="ipmp vlan930i0"
-    ["vlan930i1"]="ipmp vlan930i1"
 
 
 
@@ -143,6 +122,11 @@ interface_definition=(
     ["vlan930v0"]="vlan vlan930v0"
     ["vlan930v1"]="vlan vlan930v1"
 
+    ["vlan910v0"]='vlan vlan910v0'
+    ["vlan910v1"]='vlan vlan910v1'
+
+    ["vlan930v0"]='vlan vlan930v0'
+    ["vlan930v1"]='vlan vlan930v1'
 )
 
 # Define IPMP stubs
