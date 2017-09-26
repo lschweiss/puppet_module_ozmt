@@ -170,7 +170,6 @@ class ozmt (
       source => 'puppet:///modules/ozmt/samba';
     '/etc/ozmt/reporting.muttrc':
       ensure => present,
-      replace => false,
       content => template('ozmt/reporting.muttrc.erb');
   }
 
