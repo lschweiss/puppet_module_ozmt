@@ -166,7 +166,7 @@ class ozmt (
     '/etc/ozmt/jbod-map':
       ensure  => present,
       replace => true,
-      source  =>  'puppet:///modules/ozmt/config';
+      source  =>  'puppet:///modules/ozmt/jbod-map';
     '/etc/ozmt/network':
       ensure  => present,
       replace => true,
