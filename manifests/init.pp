@@ -163,6 +163,15 @@ class ozmt (
       ensure => present,
       replace => false,
       content => template('ozmt/config.common.erb');
+    '/etc/ozmt/jbod-map':
+      ensure  => present,
+      replace => true,
+      source  =>  'puppet:///modules/ozmt/config';
+    '/etc/ozmt/network':
+      ensure  => present,
+      replace => true,
+      recurse => true,
+      source  =>  'puppet:///modules/ozmt/network';
     '/etc/ozmt/samba':
       ensure => present,
       replace => false,
