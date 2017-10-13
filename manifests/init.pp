@@ -78,6 +78,7 @@ class ozmt (
   Optional[String] $email_from = undef,
   Optional[String] $email_from_suffix = undef,
   Optional[Variant] $ozmt_repo_revision = undef,
+  Optional[String] $ozmt_private_ssh_key = undef,
   ){
 
   # Check on package prerequisites
@@ -142,6 +143,20 @@ class ozmt (
   }
   else {
     $email_from_real = 'root@localhost'
+  }
+
+  if $ozmt_private_ssh_key {
+    file {
+      '/var/ozmt':
+        user   => "$user",
+        mode   => '0700',
+        ensure => directory;
+      '/var/ozmt/private_ssh_key':
+        user    => "$user",
+        mode    => '0600',
+        content => "$ozmt_private_ssh_key",
+        require => File['/var/ozmt'];
+    }
   }
   
   # File resources
