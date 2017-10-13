@@ -148,11 +148,11 @@ class ozmt (
   if $ozmt_private_ssh_key {
     file {
       '/var/ozmt':
-        user   => "$user",
+        owner  => "$user",
         mode   => '0700',
         ensure => directory;
       '/var/ozmt/private_ssh_key':
-        user    => "$user",
+        owner   => "$user",
         mode    => '0600',
         content => "$ozmt_private_ssh_key",
         require => File['/var/ozmt'];
