@@ -182,6 +182,10 @@ class ozmt (
       ensure  => present,
       replace => true,
       source  =>  'puppet:///modules/ozmt/jbod-map';
+    '/etc/ozmt/replication':
+      ensure  => present,
+      replace => true,
+      source  =>   'puppet:///modules/ozmt/replication';
     '/etc/ozmt/network':
       ensure  => present,
       replace => true,
