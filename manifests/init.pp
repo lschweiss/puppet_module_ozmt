@@ -185,7 +185,8 @@ class ozmt (
     '/etc/ozmt/replication':
       ensure  => present,
       replace => true,
-      source  =>   'puppet:///modules/ozmt/replication';
+      recurse => true,
+      source  => 'puppet:///modules/ozmt/replication';
     '/etc/ozmt/network':
       ensure  => present,
       replace => true,
