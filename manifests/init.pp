@@ -79,7 +79,7 @@ class ozmt (
   Optional[String] $email_from_suffix = undef,
   Optional[Variant] $ozmt_repo_revision = undef,
   Optional[String] $ozmt_private_ssh_key = undef,
-  Optional[String] $ozmt_config_hostname = undef,
+  Optional[String] $config_hostname = undef,
   ){
 
   # Check on package prerequisites
