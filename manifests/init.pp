@@ -203,12 +203,12 @@ class ozmt (
       content => template('ozmt/reporting.muttrc.erb');
   }
 
-  if $ozmt_config_hostname {
+  if $config_hostname {
     file {
       "/etc/ozmt/config.${hostname}":
         ensure  => present,
         replace => true,
-        content => "$ozmt_config_hostname",
+        content => "$config_hostname",
         require =>  File['/etc/ozmt'];
     }
   }
