@@ -102,9 +102,9 @@ snapshot_report="snapshot"
 
 
 # Replication 
-zfs_replication_host_list="mir-zfs01:mir-zfs02:mir-zfs02:mir-zfs03:mir-dr-zfs01:nrg-zfs01:hcp-zfs01:hcp-zfs02:hcp-zfs03:hcp-zfs04:hcp-zfs05:hcp-zfs06"
+zfs_replication_host_list="mir-zfs01:mir-zfs02:mir-zfs02:mir-zfs03:mir-dr-zfs01:hcp-zfs01:hcp-zfs02:hcp-zfs03:hcp-zfs04:hcp-zfs05:hcp-zfs06"
 
-zfs_replication_sync_file_list="/etc/inet/hosts:/etc/ozmt/config.common:/etc/ozmt/samba:{pool}/zfs_tools/etc/MIR_common"
+zfs_replication_sync_file_list=""
 zfs_replication_job_runner_cycle="570"
 zfs_replication_job_cleaner_cycle="570"
 
@@ -113,15 +113,13 @@ zfs_replication_remove_quotas='true'
 # Samba defaults
 samba_admin_users='niladmin@neuroimage.wustl.edu,@"Domain Admins"'
 
-
+# Make sure pkgsrc is in path
 PATH=/usr/gnu/bin:/opt/local/bin:$PATH
-
-coop_nic1='i40e0'
-coop_nic2='i40e1'
-wucon_nic1='i40e0'
-wucon_nic2='i40e1'
 
 gcc_path='/opt/local/gcc7/bin'
 
+[ -f /etc/ozmt/config.${HOSTNAME} ] && source /etc/ozmt/config.${HOSTNAME}
+
 [ -f /etc/ozmt/config.local ] && source /etc/ozmt/config.local
+
 source /etc/ozmt/config.network

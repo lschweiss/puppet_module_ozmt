@@ -79,6 +79,7 @@ class ozmt (
   Optional[String] $email_from_suffix = undef,
   Optional[Variant] $ozmt_repo_revision = undef,
   Optional[String] $ozmt_private_ssh_key = undef,
+  Optional[String] $ozmt_config_hostname = undef,
   ){
 
   # Check on package prerequisites
@@ -176,7 +177,7 @@ class ozmt (
       source => 'puppet:///modules/ozmt/config.network';
     '/etc/ozmt/config.common':
       ensure => present,
-      replace => false,
+      replace => true,
       content => template('ozmt/config.common.erb');
     '/etc/ozmt/jbod-map':
       ensure  => present,
@@ -200,6 +201,16 @@ class ozmt (
     '/etc/ozmt/reporting.muttrc':
       ensure => present,
       content => template('ozmt/reporting.muttrc.erb');
+  }
+
+  if $ozmt_config_hostname {
+    file {
+      "/etc/ozmt/config.${hostname}":
+        ensure  => present,
+        replace => true,
+        content => "$ozmt_config_hostname",
+        require =>  File['/etc/ozmt'];
+    }
   }
 
   # Set up links
