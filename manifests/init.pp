@@ -173,7 +173,7 @@ class ozmt (
       source => 'puppet:///modules/ozmt/config';
     '/etc/ozmt/config.network':
       ensure => present,
-      replace => false,
+      replace => true,
       source => 'puppet:///modules/ozmt/config.network';
     '/etc/ozmt/config.common':
       ensure => present,
