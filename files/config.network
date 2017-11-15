@@ -49,6 +49,8 @@ interface_definition=(
     
     ["vlan930i0"]='ipmp vlan930i0'
 
+    ["vlan2314i0"]='ipmp vlan2314i0'
+
 
 
 
@@ -127,6 +129,10 @@ interface_definition=(
 
     ["vlan930v0"]='vlan vlan930v0'
     ["vlan930v1"]='vlan vlan930v1'
+
+    ["vlan2314v0"]='vlan vlan2314v0'
+    ["vlan2314v1"]='vlan vlan2314v1'
+
 )
 
 # Define IPMP stubs
@@ -180,6 +186,8 @@ ipmp_definition=(
     ["vlan910i0"]="vlan910v0 vlan910v1"
 
     ["vlan930i0"]="vlan930v0 vlan930v1"
+
+    ["vlan2314i0"]="vlan2314v0 vlan2314v1"
 )
 
 # Define VLAN stubs
@@ -257,6 +265,9 @@ vlan_definition=(
     
     ["vlan930v0"]="${coop_nic1} 930 9000"
     ["vlan930v1"]="${coop_nic2} 930 9000"
+
+    ["vlan2314v0"]="${wucon_nic1} 2314 9000"
+    ["vlan2314v1"]="${wucon_nic2} 2314 9000"
      
 )
 
