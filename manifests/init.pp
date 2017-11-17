@@ -335,6 +335,12 @@ class ozmt (
       user => 'root',
       minute => [0, 15, 30, 45],
       require => Vcsrepo[$ozmt_install_dir];
+    'ozmt-cache-refresh':
+      command => "${ozmt_install_dir}/utils/zfs-cache-refresh.sh 1>/dev/null",
+      user    => 'root',
+      hour    =>  [11, 23],
+      minute  =>  fqnd_rand(60),
+      require => Vcsrepo[$ozmt_install_dir];
   }
   
   
