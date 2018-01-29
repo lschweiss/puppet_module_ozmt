@@ -157,6 +157,10 @@ class ozmt (
         mode    => '0600',
         content => "$ozmt_private_ssh_key",
         require => File['/var/ozmt'];
+      '/root/.ssh/config':
+        owner  => 'root',
+        mode   => '600',
+        source => 'puppet:///modules/ozmt/root_ssh_config';
     }
   }
   

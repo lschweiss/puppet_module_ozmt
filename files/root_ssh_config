@@ -1,0 +1,4 @@
+# This file is managed by puppet
+# puppet_module_ozmt/files/root_ssh_config
+
+IdentityFile /var/ozmt/private_ssh_key
