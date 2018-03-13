@@ -345,6 +345,13 @@ class ozmt (
       hour    =>  [11, 23],
       minute  =>  fqdn_rand(60),
       require => Vcsrepo[$ozmt_install_dir];
+    'ozmt-usage-report-monthly':
+      command  => "${ozmt_install_dir}/reporting/usage-reports.sh 1>/dev/null",
+      user     => 'root',
+      minute   => 0,
+      hour     => 0,
+      monthday => 1,
+      require  =>  Vcsrepo[$ozmt_install_dir];
   }
   
   
