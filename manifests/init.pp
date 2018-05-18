@@ -1,83 +1,46 @@
 # Class: ozmt
 # ===========================
 #
-# Full description of class ozmt here.
+# This module deploys OZMT management scripts and related configuration.
 #
-# Parameters
-# ----------
+# @param [String] ozmt_repo_source The URL for the OZMT repo, default https://bitbucket.org/ozmt/ozmt
+# @param [Variant] ozmt_repo_revision Optional, the revision to specify for *ozmt_repo_source*.  Defaults
+#   to latest.
+# @param [String] ozmt_install_dir Where to put OZMT repo contents, default /opt/ozmt.
+# @param [String] email_to Recipient email address for reporting, goes in config.common.
+# @param [String] email_from Optional, sender email address for reporting, goes in reporting.muttrc.
+#   Note this param is mutually exclusive from *email_from_suffix* below.
+# @param [String] email_from_suffix Optional, the suffix to append to the sender email address saved
+#   in reporting.muttrc.  If this param is used, ozmt module will append the machine's hostname in all
+#   caps, to create the full sender address.  E.g. for suffix "-no-reply@domain.com" this module would
+#   use the sender address "HOSTNAME-no-reply@domain.com" .  Note this param is mutually exclusive from
+#   *email_from* above.
+# @param [String] user OZMT user, default ozmt.
+# @param [String] group OZMT user group, default ozmt.
+# @param [String] ozmt_private_ssh_key Optional, content of /var/ozmt/private_ssh_key.
+# @param [String] config_hostname Optional, content of /etc/ozmt/config.${hostname}.
+# @param [Array] group_members NOT YET IMPLEMENTED Optional, array additional usernames to add to group
+#   *group*.  These usernames must exist at the time of catalog compilation.  Also, this array shouldn't
+#   include the ozmt username specified in *user* above.
 #
-# Parameters used by this module.
-#
-# * `ozmt_repo_source`
-#  The URL for the OZMT repo, default https://bitbucket.org/ozmt/ozmt
-#
-# * `ozmt_repo_revision`
-#  The revision to specify for *ozmt_repo_source*.  Will use latest
-#   revision when undef.
-#
-# * `ozmt_install_dir`
-#  Where to put OZMT repo contents, default /opt/ozmt .
-#
-# * `email_to`
-#  Recipient email address for reporting, goes in config.common
-#
-# * `email_from`
-#  Optional, sender email address for reporting, goes in reporting.muttrc.  Note this param is
-#  mutually exclusive from `email_from_suffix` below.
-#
-# * `email_from_suffix`
-#  Optional, the suffix to append to the sender email address saved in reporting.muttrc.  If this
-#  param is used, ozmt module will append the machine's hostname in all caps, to create the full
-#  sender address.  E.g. for suffix "-no-reply@domain.com" this module would use the sender address
-#  "HOSTNAME-no-reply@domain.com" .  Note this param is mutually exclusive from `email_from` above.
-#
-# * `user`
-#  OZMT user, default ozmt
-#
-# * `group`
-#  OZMT user group, default ozmt
-#
-# * `group_members`
-#  Optional, array additional usernames to add to group `group`.  Note these usernames must
-#  exist at the time of catalog compilation.  Also, this array shouldn't include the ozmt
-#  username specified in `user` above.
-#
-# Variables
-# ----------
-#
-# Variables used by this module.
-#
-# NONE
-#
-# Examples
-# --------
-#
-# @example
+# @example Declaring the class
 #    class { 'ozmt':
 #      ozmt_repo_source => 'https://bitbucket.org/myuser/custom-ozmt',
 #      ozmt_repo_revision => 'unstable',
 #      email_from_suffix => '-no-reply@domain.com',
 #    }
 #
-# Authors
-# -------
-#
-# Author Name <author@domain.com>
-#
-# Copyright
-# ---------
-#
-# Copyright 2016 Your name here, unless otherwise noted.
+# @author NRG nrg-admin@nrg.wustl.edu Copyright 2018
 #
 class ozmt (
   String $ozmt_repo_source = 'https://bitbucket.org/ozmt/ozmt',
+  Optional[Variant] $ozmt_repo_revision = undef,
   String $ozmt_install_dir = '/opt/ozmt',
-  String $user = 'ozmt',
-  String $group = 'ozmt',
   String $email_to,
   Optional[String] $email_from = undef,
   Optional[String] $email_from_suffix = undef,
-  Optional[Variant] $ozmt_repo_revision = undef,
+  String $user = 'ozmt',
+  String $group = 'ozmt',
   Optional[String] $ozmt_private_ssh_key = undef,
   Optional[String] $config_hostname = undef,
   ){
