@@ -16,7 +16,10 @@
 #   use the sender address "HOSTNAME-no-reply@domain.com" .  Note this param is mutually exclusive from
 #   *email_from* above.
 # @param [String] user OZMT user, default ozmt.
-# @param [String] group OZMT user group, default ozmt.
+# @param [Integer] uid Optional OZMT user UID, defaults to whatever OS selects.
+# @param [Variant] group OZMT user group or GID, default ozmt.
+# @param [Integer] gid Optional OZMT group GID, defaults to whatever OS selects.  This parameter can't
+#   be specified if a number is specified for *group* above.
 # @param [String] ozmt_private_ssh_key Optional, content of /var/ozmt/private_ssh_key.
 # @param [String] config_hostname Optional, content of /etc/ozmt/config.${hostname}.
 # @param [Array] group_members NOT YET IMPLEMENTED Optional, array additional usernames to add to group
@@ -41,6 +44,8 @@ class ozmt (
   Optional[String] $email_from_suffix = undef,
   String $user = 'ozmt',
   String $group = 'ozmt',
+  Optional [Integer] $uid = undef,
+  Optional [Integer] $gid = undef,
   Optional[String] $ozmt_private_ssh_key = undef,
   Optional[String] $config_hostname = undef,
   ){
@@ -77,12 +82,14 @@ class ozmt (
   # Create puppet user and group
   user { $user:
     home => $ozmt_install_dir,
+    uid => $uid,
     gid => $group,
     shell => "$user_shell",
     require => [ Group["${group}"], File[$ozmt_install_dir] ];
   }
   group { $group:
     ensure => present,
+    gid => $gid,
   }
 
   # Check out OZMT repo
