@@ -1,6 +1,6 @@
 {
   "name": "OZMT-ozmt",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Chip Schweiss",
   "summary": "Puppet module for installing OZMT",
   "license": "GPLv2",
