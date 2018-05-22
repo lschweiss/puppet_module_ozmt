@@ -44,8 +44,8 @@ class ozmt (
   Optional[String] $email_from_suffix = undef,
   String $user = 'ozmt',
   String $group = 'ozmt',
-  Optional [Integer] $uid = undef,
-  Optional [Integer] $gid = undef,
+  Optional[Integer] $uid = undef,
+  Optional[Integer] $gid = undef,
   Optional[String] $ozmt_private_ssh_key = undef,
   Optional[String] $config_hostname = undef,
   ){
