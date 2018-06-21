@@ -129,7 +129,7 @@ class ozmt (
   ->
   vcsrepo { $ozmt_install_dir:
     ensure   => present,
-    provider => hg,
+    provider => git,
     revision => $ozmt_repo_revision,
     source   => $ozmt_repo_source,
     notify   => Exec['setup-ozmt-links'];
