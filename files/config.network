@@ -213,76 +213,76 @@ ipmp_definition=(
 declare -A vlan_definition
 
 vlan_definition=(
-    ["vlan96v0"]="${coop_nic1} 96 9000"
-    ["vlan96v1"]="${coop_nic2} 96 9000"
+    ["vlan96v0"]="${coop_nic1} 96 1500"
+    ["vlan96v1"]="${coop_nic2} 96 1500"
 
-    ["vlan120v0"]="${coop_nic1} 120 9000"
-    ["vlan120v1"]="${coop_nic2} 120 9000"
+    ["vlan120v0"]="${coop_nic1} 120 1500"
+    ["vlan120v1"]="${coop_nic2} 120 1500"
 
     ["vlan145v0"]="${wucon_nic1} 145 1500"
     ["vlan145v1"]="${wucon_nic2} 145 1500"
 
-    ["vlan160v0"]="${coop_nic1} 160 9000"
-    ["vlan160v1"]="${coop_nic2} 160 9000"
+    ["vlan160v0"]="${coop_nic1} 160 1500"
+    ["vlan160v1"]="${coop_nic2} 160 1500"
 
-    ["vlan161v0"]="${coop_nic1} 161 9000"
-    ["vlan161v1"]="${coop_nic2} 161 9000"
+    ["vlan161v0"]="${coop_nic1} 161 1500"
+    ["vlan161v1"]="${coop_nic2} 161 1500"
 
-    ["vlan163v0"]="${coop_nic1} 163 9000"
-    ["vlan163v1"]="${coop_nic2} 163 9000"
+    ["vlan163v0"]="${coop_nic1} 163 1500"
+    ["vlan163v1"]="${coop_nic2} 163 1500"
 
-    ["vlan164v0"]="${coop_nic1} 164 9000"
-    ["vlan164v1"]="${coop_nic2} 164 9000"
+    ["vlan164v0"]="${coop_nic1} 164 1500"
+    ["vlan164v1"]="${coop_nic2} 164 1500"
 
-    ["vlan170v0"]="${coop_nic1} 170 9000"
-    ["vlan170v1"]="${coop_nic2} 170 9000"
+    ["vlan170v0"]="${coop_nic1} 170 1500"
+    ["vlan170v1"]="${coop_nic2} 170 1500"
 
-    ["vlan175v0"]="${coop_nic1} 175 9000"
-    ["vlan175v1"]="${coop_nic2} 175 9000"
+    ["vlan175v0"]="${coop_nic1} 175 1500"
+    ["vlan175v1"]="${coop_nic2} 175 1500"
 
-    ["vlan176v0"]="${coop_nic1} 176 9000"
-    ["vlan176v1"]="${coop_nic2} 176 9000"
+    ["vlan176v0"]="${coop_nic1} 176 1500"
+    ["vlan176v1"]="${coop_nic2} 176 1500"
 
-    ["vlan241v0"]="${coop_nic1} 241 9000"
-    ["vlan241v1"]="${coop_nic2} 241 9000"
+    ["vlan241v0"]="${coop_nic1} 241 1500"
+    ["vlan241v1"]="${coop_nic2} 241 1500"
 
-    ["vlan253v0"]="${coop_nic1} 253 9000"
-    ["vlan253v1"]="${coop_nic2} 253 9000"
+    ["vlan253v0"]="${coop_nic1} 253 1500"
+    ["vlan253v1"]="${coop_nic2} 253 1500"
 
-    ["vlan326v0"]="${coop_nic1} 326 9000"
+    ["vlan326v0"]="${coop_nic1} 326 1500"
     ["vlan326v0_persistent"]="true"
-    ["vlan326v1"]="${coop_nic2} 326 9000"
+    ["vlan326v1"]="${coop_nic2} 326 1500"
     ["vlan326v1_persistent"]="true"
 
-    ["vlan400v0"]="${coop_nic1} 400 9000"
-    ["vlan400v1"]="${coop_nic2} 400 9000"
+    ["vlan400v0"]="${coop_nic1} 400 1500"
+    ["vlan400v1"]="${coop_nic2} 400 1500"
 
-    ["vlan490v0"]="${coop_nic1} 490 9000"
-    ["vlan490v1"]="${coop_nic2} 490 9000"
+    ["vlan490v0"]="${coop_nic1} 490 1500"
+    ["vlan490v1"]="${coop_nic2} 490 1500"
 
-    ["vlan540v0"]="${coop_nic1} 540 9000"
-    ["vlan540v1"]="${coop_nic2} 540 9000"
+    ["vlan540v0"]="${coop_nic1} 540 1500"
+    ["vlan540v1"]="${coop_nic2} 540 1500"
 
-    ["vlan800v0"]="${coop_nic1} 800 9000"
-    ["vlan800v1"]="${coop_nic2} 800 9000"
+    ["vlan800v0"]="${coop_nic1} 800 1500"
+    ["vlan800v1"]="${coop_nic2} 800 1500"
 
-    ["vlan801v0"]="${coop_nic1} 801 9000"
-    ["vlan801v1"]="${coop_nic2} 801 9000"
+    ["vlan801v0"]="${coop_nic1} 801 1500"
+    ["vlan801v1"]="${coop_nic2} 801 1500"
 
-    ["vlan802v0"]="${coop_nic1} 802 9000"
-    ["vlan802v1"]="${coop_nic2} 802 9000"
+    ["vlan802v0"]="${coop_nic1} 802 1500"
+    ["vlan802v1"]="${coop_nic2} 802 1500"
 
-    ["vlan803v0"]="${coop_nic1} 803 9000"
-    ["vlan803v1"]="${coop_nic2} 803 9000"
+    ["vlan803v0"]="${coop_nic1} 803 1500"
+    ["vlan803v1"]="${coop_nic2} 803 1500"
 
-    ["vlan900v0"]="${coop_nic1} 900 9000"
-    ["vlan900v1"]="${coop_nic2} 900 9000"
+    ["vlan900v0"]="${coop_nic1} 900 1500"
+    ["vlan900v1"]="${coop_nic2} 900 1500"
 
-    ["vlan910v0"]="${coop_nic1} 910 9000"
-    ["vlan910v1"]="${coop_nic2} 910 9000"
+    ["vlan910v0"]="${coop_nic1} 910 1500"
+    ["vlan910v1"]="${coop_nic2} 910 1500"
     
-    ["vlan930v0"]="${coop_nic1} 930 9000"
-    ["vlan930v1"]="${coop_nic2} 930 9000"
+    ["vlan930v0"]="${coop_nic1} 930 1500"
+    ["vlan930v1"]="${coop_nic2} 930 1500"
 
     ["vlan2307v0"]="${wucon_nic1} 2307 1500"
     ["vlan2307v1"]="${wucon_nic2} 2307 1500"
@@ -290,8 +290,8 @@ vlan_definition=(
     ["vlan2308v0"]="${wucon_nic1} 2308 1500"
     ["vlan2308v1"]="${wucon_nic2} 2308 1500"
 
-    ["vlan2314v0"]="${wucon_nic1} 2314 1500"
-    ["vlan2314v1"]="${wucon_nic2} 2314 1500"
+    ["vlan2314v0"]="${wucon_nic1} 2314 9000"
+    ["vlan2314v1"]="${wucon_nic2} 2314 9000"
      
     ["vlan2316v0"]="${wucon_nic1} 2316 1500"
     ["vlan2316v1"]="${wucon_nic2} 2316 1500"
