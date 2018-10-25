@@ -38,6 +38,7 @@
 class ozmt (
   String $ozmt_repo_source = 'https://bitbucket.org/ozmt/ozmt',
   Optional[Variant] $ozmt_repo_revision = undef,
+  Boolan $bleeding_edge = true,
   String $ozmt_install_dir = '/opt/ozmt',
   String $email_to,
   Optional[String] $email_from = undef,
@@ -98,7 +99,10 @@ class ozmt (
   }
   ->
   vcsrepo { $ozmt_install_dir:
-    ensure   => present,
+    ensure   => $bleeding_edge ? {
+                  true    => latest,
+                  default => present, 
+                },
     provider => git,
     revision => $ozmt_repo_revision,
     source   => $ozmt_repo_source,
