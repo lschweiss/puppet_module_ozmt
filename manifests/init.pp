@@ -293,27 +293,27 @@ class ozmt (
       command => "${ozmt_install_dir}/utils/ozmt-cron.sh hourly 1>/dev/null",
       user    => 'root',
       minute  => 0,
-      require =>  Vcsrepo[$ozmt_install_dir]
+      require =>  Vcsrepo[$ozmt_install_dir];
     'ozmt-process-crons-daily':
       command => "${ozmt_install_dir}/utils/ozmt-cron.sh daily 1>/dev/null",
       user    => 'root',
       hour    => 0,
       minute  => 0,
-      require => Vcsrepo[$ozmt_install_dir]
+      require => Vcsrepo[$ozmt_install_dir];
     'ozmt-process-crons-weekly':
       command => "${ozmt_install_dir}/utils/ozmt-cron.sh weekly 1>/dev/null",
       user    => 'root',
       hour    => 0,
       minute  => 0,
       weekday => 0,
-      require => Vcsrepo[$ozmt_install_dir]
+      require => Vcsrepo[$ozmt_install_dir];
     'ozmt-process-crons-monthly':
       command  => "${ozmt_install_dir}/utils/ozmt-cron.sh monthly 1>/dev/null",
       user     => 'root',
       hour     => 0,
       minute   => 0,
       monthday => 1,
-      require  => Vcsrepo[$ozmt_install_dir]
+      require  => Vcsrepo[$ozmt_install_dir];
 
     'ozmt-schedule-replication':
       command => "${ozmt_install_dir}/replication/schedule-replication.sh 1>/dev/null",
