@@ -38,7 +38,7 @@
 class ozmt (
   String $ozmt_repo_source = 'https://bitbucket.org/ozmt/ozmt',
   Optional[Variant] $ozmt_repo_revision = undef,
-  Boolan $bleeding_edge = true,
+  Boolean $bleeding_edge = true,
   String $ozmt_install_dir = '/opt/ozmt',
   String $email_to,
   Optional[String] $email_from = undef,
