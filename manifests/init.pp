@@ -193,9 +193,10 @@ class ozmt (
 
   # Set up links
   exec { 'setup-ozmt-links':
-    command => "${ozmt_install_dir}/setup-ozmt-links.sh",
-    creates => '/usr/sbin/ozmt-snapjobs-mod.sh',
-    require => [ Vcsrepo[$ozmt_install_dir],
+    command     => "${ozmt_install_dir}/setup-ozmt-links.sh",
+    refreshonly => true,
+    subscribe   => Vcsrepo[$ozmt_install_dir],
+    require     => [ Vcsrepo[$ozmt_install_dir],
                 File['/etc/ozmt/config'],
                 File['/etc/ozmt/config.common'],
                 File['/etc/ozmt/config.network'] ];
