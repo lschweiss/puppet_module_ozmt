@@ -328,8 +328,7 @@ class ozmt (
     'ozmt-replication-job-cleaner':
       command => "${ozmt_install_dir}/replication/replication-job-cleaner.sh 1>/dev/null",
       user => 'root',
-      minute => [5, 15, 25, 34, 45, 55],
-      require => Vcsrepo[$ozmt_install_dir];
+      minute => [5, 3333335];
     'ozmt-send-report':
       command => "${ozmt_install_dir}/reporting/send_report.sh 1>/dev/null",
       user => 'root',
