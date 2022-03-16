@@ -290,6 +290,14 @@ class ozmt (
       minute => [2, 17, 32, 47],
       require => Vcsrepo[$ozmt_install_dir];
 
+    'ozmt-check-zpool-status':
+      command => "${ozmt_install_dir}/reporting/zpool-status-report.sh 1>/dev/null",
+      user    => 'root',
+      hour    => [ 0, 6, 12, 18 ],
+      minute  => 0,
+      require => Vcsrepo[$ozmt_install_dir];
+
+
     'ozmt-process-crons-hourly':
       command => "${ozmt_install_dir}/utils/ozmt-cron.sh hourly 1>/dev/null",
       user    => 'root',
